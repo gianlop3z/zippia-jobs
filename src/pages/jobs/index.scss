@@ -1,0 +1,34 @@
+@import '/src/variables';
+
+.jobs-page {
+  padding: 0 10px;
+  .hero-text {
+    text-align: center;
+    margin-top: 2em;
+    font-size: 1.15em;
+    h2 { line-height: 1 }
+  }
+  .filters {
+    max-width: 395px;
+    margin: 10px auto;
+    button {
+      height: 40px;
+      width: calc(50% - 5px);
+      background: none;
+      border: 2px solid;
+      border-radius: 5px;
+      font-weight: bold;
+      color: $darkGray;
+      cursor: pointer;
+      &:hover {
+        color: $babyBlue;
+      }
+    }
+    .by-company {
+      margin-right: 10px;
+    }
+  }
+  .jobs-list {
+    margin-top: 15px;
+  }
+}
