@@ -20,15 +20,30 @@
       font-weight: bold;
       color: $darkGray;
       cursor: pointer;
-      &:hover {
-        color: $babyBlue;
-      }
+      &:hover { color: $babyBlue }
     }
-    .by-company {
-      margin-right: 10px;
-    }
+    .by-company { margin-right: 10px }
   }
-  .jobs-list {
-    margin-top: 15px;
+  .jobs-section {
+    .jobs-list { margin-top: 15px }
+    @media (min-width: 1024px) {
+      display: flex;
+      justify-content: center;
+      margin: 0 auto;
+      margin-top: 20px;
+      max-width: 1125px;
+      .jobs-list { &, .job:first-of-type { margin-top: 0 } }
+      .job-information {
+        position: sticky;
+        top: 2.5vh;
+        left: 0 !important;
+        height: 95vh;
+        width: 700px;
+        box-shadow: 0px 0px 6px 2px #0000031f;
+        border-radius: 5px;
+        margin-left: 1.5em;
+        .go-back { display: none }
+      }      
+    }
   }
 }

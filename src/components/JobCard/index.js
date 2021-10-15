@@ -1,11 +1,11 @@
 import './index.scss';
 
-export function JobCard({ data }) {
+export function JobCard({ data, ...rest }) {
 
   let { companyLogo, companyName, jobTitle, postedDate, shortDesc } = data;
 
   return (
-    <div className="job">
+    <div className="job" onClick={rest.onClick}>
       <section className="content">
         <figure>
           <img src={companyLogo} alt=""/>

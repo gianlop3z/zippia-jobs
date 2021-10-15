@@ -1,0 +1,86 @@
+@import '/src/variables';
+
+.job-information {
+  position: fixed;
+  top: 0; left: 100%;
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  transition-duration: .5s;
+  .cover-hero {
+    height: 20%;
+    background-color: $lightGray;
+  }
+  .content {
+    padding-left: 20px;
+    figure {
+      display: flex;
+      align-items: flex-end;
+      margin-top: -42.5px;
+      img {
+        width: 85px;
+        height: 85px;
+        border-radius: 50%;
+      }
+      .salary {
+        flex: 1;
+        text-align: right;
+        margin-right: 10px;
+        font-weight: bold;
+        color: $darkGray;
+      }
+    }
+    .main {
+      font-size: 1.15em;
+      .job-title {
+        font-weight: bold;
+        margin-top: 5px;
+      }
+      .location-date { font-size: .9em }
+    }
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 10px 0 0 -5px;
+      p {
+        flex: 1;
+        margin: 5px;
+        padding: 5px 10px;
+        background-color: $lightGray;
+        white-space: nowrap;
+        border-radius: 5px;
+        text-align: center;
+        color: $darkGray;
+      }
+    }
+    .overview {
+      font-size: 1.4em;
+      p:not(.desc) { font-weight: bold }
+      .desc { font-size: .8em }
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .go-back {
+    position: fixed;
+    top: 0;
+    display: flex;
+    font-size: 2em;
+    margin: 10px;
+    cursor: pointer;
+    &:hover { color: $babyBlue }
+  }
+  &.show { left: 0 }
+}
