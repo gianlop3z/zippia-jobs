@@ -12,12 +12,15 @@ export function Jobs() {
   const [jobs, setJobs] = useState([]);
   const [initialJobs, setInitialJobs] = useState([]);
   const [completeJob, setCompleteJob] = useState(null);
+  const [showComplete, setShowComplete] = useState(false);
   const [byCompany, setByCompany] = useState(false);
   const [byWeek, setByWeek] = useState(false);
+  const [loading, setLoading] = useState(false);
 
 
   // Here's the data fetch through async way
   useEffect(() => {
+    setLoading(true);
     async function fetchData() {
       let resp = await get();
       if (resp) {
@@ -25,6 +28,7 @@ export function Jobs() {
         setJobs(jobs);
         setInitialJobs(jobs);
         setCompleteJob(jobs[0]);
+        setLoading(false);
       }
     };
     fetchData();
@@ -53,6 +57,7 @@ export function Jobs() {
     if (!byWeek) {
       let filter = jobs.filter(job => {
         let days = job.postedDate.slice(0, -5);
+        debugger;
         if (days <= 7) return job;        
       });
       setJobs(filter);
@@ -78,20 +83,25 @@ export function Jobs() {
             placeholder="e.g. Facebook"
           /> }
       </div>
-      <section className="jobs-section">
-        <div className="jobs-list">
-          { jobs.map((job, i) => i < 10 && 
-              <JobCard
-                key={i}
-                data={job}
-                onClick={() => setCompleteJob(job)}
-              /> )}
-        </div>
-        <JobInformation
-          info={completeJob}
-          toHide={() => setCompleteJob(null)}
-        />
-      </section>
+      { loading ? <div className="loader"/> :
+        <section className="jobs-section">
+          <div className="jobs-list">
+            { jobs.map((job, i) => i < 10 && 
+                <JobCard
+                  key={i}
+                  data={job}
+                  onClick={() => {
+                    setCompleteJob(job);
+                    setShowComplete(true);
+                  }}
+                /> )}
+          </div>
+          <JobInformation
+            info={completeJob}
+            show={showComplete}
+            toHide={() => setCompleteJob(null)}
+          />
+        </section> }
     </div>
   )
 

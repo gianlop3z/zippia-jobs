@@ -26,7 +26,7 @@
     .by-company { margin-right: 10px }
   }
   .jobs-section {
-    .jobs-list { margin-top: 15px }
+    .jobs-list { margin-top: 15px}
     @media (min-width: 1024px) {
       display: flex;
       justify-content: center;
@@ -46,5 +46,18 @@
         .go-back { display: none }
       }      
     }
+  }
+  .loader {
+    width: 30px;
+    height: 30px;
+    margin: 2em auto;
+    border: 5px solid black;
+    border-radius: 50%;
+    border-top-color: transparent;
+    @keyframes spin {
+      from { transform: rotate(0) }
+      to { transform: rotate(360deg) }
+    }
+    animation: spin 1s infinite;
   }
 }

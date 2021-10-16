@@ -9,12 +9,12 @@ import './index.scss';
 
 export function JobInformation(props) {
 
-  let { info, toHide } = props,
+  let { info, show, toHide } = props,
   { companyLogo, estimatedSalary, jobTitle,
     location, skillsets, shortDesc, postedDate } = info || {};
 
   return ( 
-    <div className="job-information" style={{ left: info ? '0' : '100%' }}>
+    <div className="job-information" style={{ left: show ? '0' : '100%' }}>
       <div className="cover-hero"/>
       <section className="content">
         <figure>
