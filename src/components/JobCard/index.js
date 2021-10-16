@@ -1,8 +1,11 @@
+import { useEffect } from 'react';
 import './index.scss';
 
-export function JobCard({ data, ...rest }) {
+export function JobCard({ data, index, ...rest }) {
 
   let { companyLogo, companyName, jobTitle, postedDate, shortDesc } = data;
+
+  useEffect(() => index === 0 && rest?.onClick(), []);
 
   return (
     <div className="job" onClick={rest.onClick}>

@@ -2,33 +2,29 @@ import './index.scss';
 
 export function JobInformation(props) {
 
-  let { info = {}, toHide } = props;
+  let { info, toHide } = props,
+  { companyLogo, estimatedSalary, jobTitle,
+    location, skillsets, shortDesc, postedDate } = info || {};
 
   return ( 
     <div className="job-information" style={{ left: info ? '0' : '100%' }}>
       <div className="cover-hero"/>
       <section className="content">
         <figure>
-          <img src="https://logo.clearbit.com/xerox.com" alt=""/>
-          <p className="salary">$79k-115k yearly est.</p>
+          <img src={companyLogo} alt=""/>
+          <p className="salary">{estimatedSalary}</p>
         </figure>
         <div className="main">
-          <p className="job-title">Veterans Preferred - Business Analyst</p>
-          <p className="location-date">Palo Alto, CA &bull; 14 days ago</p>
+          <p className="job-title">{jobTitle}</p>
+          <p className="location-date">{location} &bull; {postedDate}</p>
         </div>
         <div className="skills">
-          <p>Ethernet</p>
-          <p>Business Status</p>
-          <p>Financial Models</p>
-          <p>Product Data</p>
-          <p>GUI</p>
+          { skillsets?.map((skill, i) => i < 5 && <p key={i}>{skill}</p>) }
         </div>
         <div className="overview">
           <p>Overview</p>
           <p className="desc">
-            Military Veterans are Encouraged to Apply.<br/>
-            PARC, a Xerox company, is in the Business of Breakthroughs.<br/>
-            Practicing
+            {shortDesc}
           </p>
         </div>
       </section>

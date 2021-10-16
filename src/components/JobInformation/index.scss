@@ -18,6 +18,8 @@
       align-items: flex-end;
       margin-top: -42.5px;
       img {
+        object-fit: contain;
+        background-color: $lightGray;        
         width: 85px;
         height: 85px;
         border-radius: 50%;

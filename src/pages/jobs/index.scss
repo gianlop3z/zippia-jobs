@@ -20,6 +20,7 @@
       font-weight: bold;
       color: $darkGray;
       cursor: pointer;
+      outline: none;
       &:hover { color: $babyBlue }
     }
     .by-company { margin-right: 10px }
