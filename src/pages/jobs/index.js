@@ -5,6 +5,8 @@ import { SearchInput } from '../../components/SearchInput';
 import { get } from '../../services/jobs';
 import './index.scss';
 
+// This is the main page
+
 export function Jobs() {
 
   const [jobs, setJobs] = useState([]);
@@ -13,17 +15,22 @@ export function Jobs() {
   const [byCompany, setByCompany] = useState(false);
   const [byWeek, setByWeek] = useState(false);
 
+
+  // Here's the data fetch through async way
   useEffect(() => {
     async function fetchData() {
       let resp = await get();
       if (resp) {
-        setJobs(resp.jobs);
-        setInitialJobs(resp.jobs);
+        let { jobs } = resp;
+        setJobs(jobs);
+        setInitialJobs(jobs);
+        setCompleteJob(jobs[0]);
       }
     };
     fetchData();
   }, [])
 
+  // search input filter handler
   const companyFilter = query => {
     if (query) {
       let filter = initialJobs.filter(job => {
@@ -37,6 +44,9 @@ export function Jobs() {
     } else { setJobs(initialJobs) };
   }
 
+  // Here i filtered by postedDate(e.g. 19d ago).
+  // So i use the splice function, from index 0 to -5.
+  // To remove the string part.
   const weekFilter = () => {
     setByCompany(false);
     setByWeek(!byWeek);
@@ -73,7 +83,6 @@ export function Jobs() {
           { jobs.map((job, i) => i < 10 && 
               <JobCard
                 key={i}
-                index={i}
                 data={job}
                 onClick={() => setCompleteJob(job)}
               /> )}

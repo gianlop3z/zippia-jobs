@@ -1,5 +1,12 @@
 import './index.scss';
 
+// This one, show more information about a job.
+// These props must be:
+// {
+//    info: the complete job object,
+//    toHide: this function is for close (goes ouside the viewport) the component
+// }
+
 export function JobInformation(props) {
 
   let { info, toHide } = props,
