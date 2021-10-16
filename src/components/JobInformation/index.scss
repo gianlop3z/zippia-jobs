@@ -19,7 +19,8 @@
       margin-top: -42.5px;
       img {
         object-fit: contain;
-        background-color: $lightGray;        
+        background-color: $lightGray;     
+        border: 2px solid $darkGray;   
         width: 85px;
         height: 85px;
         border-radius: 50%;

@@ -60,4 +60,11 @@
     }
     animation: spin 1s infinite;
   }
+  .not-found {
+    max-width: 395px;
+    margin: 5em auto;
+    text-align: center;
+    font-weight: bold;
+    color: $darkGray;
+  }
 }

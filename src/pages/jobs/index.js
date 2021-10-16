@@ -39,10 +39,9 @@ export function Jobs() {
     if (query) {
       let filter = initialJobs.filter(job => {
         let lCasedQuery = query.toLowerCase(),
-        lCasedCompany = job.companyName.toLowerCase();        
-        if (lCasedCompany.includes(lCasedQuery)) {
-          return job;
-        }
+        lCasedCompany = job.companyName.toLowerCase(),
+        check = lCasedCompany.includes(lCasedQuery);
+        return check && job;
       });
       setJobs(filter);
     } else { setJobs(initialJobs) };
@@ -57,8 +56,7 @@ export function Jobs() {
     if (!byWeek) {
       let filter = jobs.filter(job => {
         let days = job.postedDate.slice(0, -5);
-        debugger;
-        if (days <= 7) return job;        
+        return days <= 7 && job;
       });
       setJobs(filter);
     } else { setJobs(initialJobs) };
@@ -84,24 +82,29 @@ export function Jobs() {
           /> }
       </div>
       { loading ? <div className="loader"/> :
-        <section className="jobs-section">
-          <div className="jobs-list">
-            { jobs.map((job, i) => i < 10 && 
-                <JobCard
-                  key={i}
-                  data={job}
-                  onClick={() => {
-                    setCompleteJob(job);
-                    setShowComplete(true);
-                  }}
-                /> )}
-          </div>
-          <JobInformation
-            info={completeJob}
-            show={showComplete}
-            toHide={() => setCompleteJob(null)}
-          />
-        </section> }
+          jobs.length > 0 ? 
+            <section className="jobs-section">
+              <div className="jobs-list">
+                { jobs.map((job, i) => i < 10 && 
+                    <JobCard
+                      key={i}
+                      data={job}
+                      onClick={() => {
+                        setCompleteJob(job);
+                        setShowComplete(true);
+                      }}
+                    /> )}
+              </div>
+              <JobInformation
+                info={completeJob}
+                show={showComplete}
+                toHide={() => {
+                  setCompleteJob(null);
+                  setShowComplete(false);
+                }}
+              />
+            </section> :
+            <p className="not-found">Job wasn't found</p> }
     </div>
   )
 
